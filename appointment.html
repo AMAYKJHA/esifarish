@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointment Booking</title>
+  <style>
+    body {
+      font-family: 'Mangal', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f2f6fc;
+      margin: 0;
+    }
+
+    .container {
+      border: 2px solid #0077b6;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      background: white;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      width: 400px;
+    }
+
+    header h1 {
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, button {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #999;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f87;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #0077b6;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>समय तोक्नुहोस्</h1>
+    </header>
+
+    <form onsubmit="event.preventDefault(); bookAppointment();">
+      <label>अपोइन्टमेन्ट मिति र समय छान्नुहोस्:</label><br>
+      <input type="datetime-local" id="appointment" required>
+      <br><br>
+      <button type="submit">बुक गर्नुहोस्</button>
+    </form>
+
+    <p id="msg"></p>
+
+    <a href="nagrikdashboard.html">ड्यासबोर्डमा फर्कनुहोस्</a>
+  </div>
+
+  <script>
+    function bookAppointment() {
+      let input = document.getElementById("appointment").value;
+      let msg = document.getElementById("msg");
+
+      if (!input) {
+        msg.style.color = "red";
+        msg.innerText = "❌ कृपया मिति र समय छान्नुहोस्।";
+        return;
+      }
+
+      let selectedDate = new Date(input);
+      let now = new Date();
+
+      // check past date
+      if (selectedDate < now) {
+        msg.style.color = "red";
+        msg.innerText = "❌ यो मिति/समय चयन गर्न सकिँदैन (भूतकाल)।";
+        return;
+      }
+
+      // check office time (10:00 to 17:00)
+      let hour = selectedDate.getHours();
+      if (hour < 10 || hour >= 17) {
+        msg.style.color = "red";
+        msg.innerText = "❌ कार्यालय यस समयमा बन्द हुन्छ। कृपया 10:00 देखि 17:00 बीचमा छान्नुहोस्।";
+        return;
+      }
+
+      // success
+      msg.style.color = "green";
+      msg.innerText = "✅ Appointment confirmed on: " + selectedDate.toLocaleString();
+    }
+  </script>
+</body>
+</html>

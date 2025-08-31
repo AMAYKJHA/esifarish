@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ne">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>सिफारिस प्रणाली - Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      /* --- तिम्रो CSS same राखिएको छ --- */
+      body {
+        background: rgb(255, 202, 219);
+        font-family: "Kalimati", sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .login-container {
+        display: flex;
+        max-width: 900px;
+        width: 90%;
+        background: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .left-panel {
+        flex: 1;
+        background-color: #0d6efd;
+        color: white;
+        text-align: center;
+        padding: 30px;
+      }
+      .right-panel {
+        flex: 1;
+        background-color: white;
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+      .right-panel h3 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #0d6efd;
+        font-size: 26px;
+        font-weight: bold;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px 12px;
+      }
+      .input-group i {
+        color: #0d6efd;
+        margin-right: 8px;
+      }
+      .input-group input {
+        border: none;
+        outline: none;
+        flex: 1;
+      }
+      button {
+        width: 100%;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
+      button:hover {
+        background-color: #0b5ed7;
+      }
+      .links {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .links a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      .links a:hover {
+        text-decoration: underline;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        padding-top: 80px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #ccc;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 8px;
+        position: relative;
+      }
+      .modal-content h3 {
+        margin-top: 0;
+        color: #0d6efd;
+      }
+      .modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="left-panel">
+        <img src="janakpurdham-logo.png" style="width: 150px; height: auto" />
+        <p style="font-size: 26px">
+          जनकपुरधाम उपमहानगरपालिका<br />
+          धनुषा, मधेश प्रदेश
+        </p>
+        <p style="font-size: 18px">
+          सिफारिस तथा प्रमाणित प्रकृया व्यवस्थापन प्रणाली
+        </p>
+      </div>
+
+      <div class="right-panel">
+        <h3><i class="fas fa-sign-in-alt"></i> लग - इन</h3>
+        <form id="loginForm" action="backend/login.php" method="POST">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              name="input"
+              id="loginInput"
+              placeholder="Email / Mobile / Name"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              name="password"
+              id="loginPassword"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+
+        <div class="links">
+          <a href="#" onclick="openModal('resetModal')">पासवर्ड बिर्सनुभयो?</a
+          ><br />
+          <a href="#" onclick="openModal('registerModal')">दर्ता गर्नुस</a> |
+          <a href="#" onclick="openModal('otpModal')">PASSWORD रिसेट</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('registerModal')">&times;</span>
+        <h3>नयाॅ दर्ता</h3>
+        <form id="registerForm" action="backend/register.php" method="POST">
+          <input
+            type="text"
+            name="name"
+            id="regName"
+            placeholder="पुरा नाम"
+            required
+          />
+          <input
+            type="text"
+            name="mobile"
+            id="regMobile"
+            placeholder="मोबाइल नम्बर"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            id="regEmail"
+            placeholder="इमेल"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            id="regPassword"
+            placeholder="पासवर्ड"
+            required
+          />
+          <button type="submit">दर्ता गर्नुहोस्</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Reset Modal -->
+    <div id="resetModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('resetModal')">&times;</span>
+        <h3>पासवर्ड रिसेट</h3>
+        <input
+          type="email"
+          id="resetEmail"
+          placeholder="इमेल लेख्नुहोस्"
+          required
+        />
+        <button onclick="resetByEmail()">रिसेट गर्नुहोस्</button>
+      </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div id="otpModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('otpModal')">&times;</span>
+        <h3>मोबाइल बाट पासवर्ड रिसेट</h3>
+        <input type="text" id="otpMobile" placeholder="मोबाइल नम्बर" required />
+        <button onclick="resetByMobile()">रिसेट गर्नुहोस्</button>
+      </div>
+    </div>
+
+    <script>
+      function openModal(id) {
+        document.getElementById(id).style.display = "block";
+      }
+      function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+      }
+
+      // Only keep modal open/close functions
+      function openModal(id) {
+        document.getElementById(id).style.display = "block";
+      }
+      function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+      }
+    </script>
+  </body>
+</html>

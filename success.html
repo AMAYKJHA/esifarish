@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ne">
+  <head>
+    <meta charset="UTF-8" />
+    <title>सफलता</title>
+    <style>
+      body {
+        font-family: "Mangal", sans-serif;
+        background: rgb(255, 202, 219);
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        background: white;
+        padding: 50px 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 80px auto;
+      }
+
+      h1 {
+        color: #0d6efd;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #0d6efd;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 6px;
+      }
+
+      a:hover {
+        background-color: #084ec7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2 id="message"></h2>
+      <script>
+        const status = localStorage.getItem("formStatus");
+        const id = localStorage.getItem("formId");
+
+        if (status === "success") {
+          document.body.innerHTML = `<h2 style="color:green;">✅ आवेदन सफलतापूर्वक पेश गरियो!</h2>
+    <p>तपाईंको आवेदन आईडी: <strong>${id}</strong></p>`;
+        } else {
+          document.body.innerHTML = `<h2 style="color:red;">❌ आवेदन पेश गर्न असफल भयो!</h2>
+    <p>कृपया सबै आवश्यक जानकारी भरि पुन: प्रयास गर्नुहोस्।</p>`;
+        }
+      </script>
+      <script>
+        window.onload = function () {
+          let msg = localStorage.getItem("appointmentMsg");
+          if (msg) {
+            document.getElementById("msg").innerText = msg;
+            localStorage.removeItem("appointmentMsg");
+          }
+        };
+      </script>
+
+      <p id="msg"></p>
+      <a href="nagrikdashboard.php">ड्यासबोर्डमा फर्कनुहोस्</a>
+    </div>
+  </body>
+</html>

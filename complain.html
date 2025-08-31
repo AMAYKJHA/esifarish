@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ne">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>गुनासो दर्ता</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Mangal", sans-serif;
+        background: rgb(255, 202, 219);
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #0d6efd;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      h2 {
+        color: #c91f45;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 15px;
+      }
+      button {
+        background-color: #c91f45;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #a51835;
+      }
+      .success {
+        color: green;
+        text-align: center;
+        font-weight: bold;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>गुनासो दर्ता फारम</h1>
+      <p>
+        यदि तपाईँको सिफारिस ५ दिनभित्र आएन वा जानकारी पाउनुभएन भने यहाँ गुनासो
+        दर्ता गर्नुहोस्।
+      </p>
+    </header>
+
+    <div class="container">
+      <h2><i class="fas fa-exclamation-circle"></i> गुनासो पठाउनुहोस्</h2>
+      <form id="complainForm" action="backend/complain.php" method="POST">
+        <label for="name">नाम:</label>
+        <input type="text" name="name" id="name" required />
+
+        <label for="citizenId">नागरिकता नं:</label>
+        <input type="text" name="citizenId" id="citizenId" required />
+
+        <label for="applicationId">आवेदन नं:</label>
+        <input
+          type="text"
+          name="applicationId"
+          id="applicationId"
+          placeholder="(यदि थाहा भएमा)"
+        />
+
+        <label for="complainType">गुनासोको प्रकार:</label>
+        <select id="complainType" required>
+          <option value="">--छान्नुहोस्--</option>
+          <option value="delay">५ दिनमा सिफारिस नपाएको</option>
+          <option value="no-update">अपडेट जानकारी नआएको</option>
+          <option value="other">अन्य</option>
+        </select>
+
+        <label for="message">विस्तृत विवरण:</label>
+        <textarea name="message" id="message" rows="4" required></textarea>
+
+        <button type="submit">✍️ गुनासो दर्ता गर्नुहोस्</button>
+      </form>
+
+      <p class="success" id="successMsg">
+        ✅ तपाईँको गुनासो सफलतापूर्वक दर्ता भयो।
+      </p>
+
+      <p id="msg"></p>
+
+      <a href="nagrikdashboard.html">ड्यासबोर्डमा फर्कनुहोस्</a>
+    </div>
+
+    <script>
+      document
+        .getElementById("complainForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          document.getElementById("successMsg").style.display = "block";
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

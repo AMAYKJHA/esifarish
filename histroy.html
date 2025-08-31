@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>सिफारिस इतिहास</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Mangal', sans-serif;
+      background: rgb(255, 202, 219);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    h2 {
+      color: #c91f45;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #c91f45;
+      color: #fff;
+    }
+    .status-pending { color: orange; font-weight: bold; }
+    .status-approved { color: green; font-weight: bold; }
+    .status-rejected { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>सिफारिस इतिहास</h1>
+    <p>यहाँ तपाईँले वार्ड कार्यालयबाट पाएको अघिल्ला सिफारिस विवरण हेर्न सक्नुहुन्छ।</p>
+  </header>
+
+  <div class="container">
+    <h2><i class="fas fa-history"></i> अघिल्ला सिफारिस विवरण</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>आवेदन नं</th>
+          <th>सिफारिस प्रकार</th>
+          <th>पेश गरेको मिति</th>
+          <th>स्थिति</th>
+          <th>डाउनलोड</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td>नाता प्रमाणपत्र</td>
+          <td>2082-04-15</td>
+          <td class="status-approved">स्वीकृत</td>
+          <td><a href="docs/nata.pdf" download>⬇️ डाउनलोड</a></td>
+        </tr>
+        <tr>
+          <td>102</td>
+          <td>बसोबास प्रमाणपत्र</td>
+          <td>2082-04-18</td>
+          <td class="status-pending">प्रक्रियामा</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>103</td>
+          <td>जन्म प्रमाणपत्र</td>
+          <td>2082-04-20</td>
+          <td class="status-rejected">अस्वीकृत</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+	<div class="dashboard-cards">
+  <!-- नयाँ सिफारिस कार्ड -->
+  <div class="card" onclick="goTo('apply.html')">
+    <i class="fas fa-file-signature"></i>
+    <h3>नयाँ सिफारिस</h3>
+    <p>नयाँ सिफारिस अनुरोध गर्नुहोस्</p>
+  </div>
+
+  <div class="card" onclick="goTo('history.html')">
+  <i class="fas fa-history"></i>
+  <h3>अनुरोध इतिहास</h3>
+  <p>तपाईँले कार्यालयबाट पाएको अघिल्ला सिफारिस विवरण हेर्नुहोस्</p>
+  <span class="dashboard-button">📜 इतिहास हेर्नुहोस्</span>
+</div>
+
+  <!-- अन्य कार्डहरू जस्तै डाउनलोड, सम्पर्क, अपलोड आदि -->
+</div>
+  </div>
+</body>
+</html>

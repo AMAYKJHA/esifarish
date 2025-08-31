@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>सिफारिस प्रणाली - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<style>
+  body {
+    background: rgb(255, 202, 219);
+    font-family: 'Kalimati', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-container {
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .left-panel {
+    flex: 1;
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .left-panel .logo {
+    width: 100px;
+    margin-bottom: 15px;
+  }
+
+  .left-panel h2 {
+    margin: 10px 0;
+    font-size: 24px;
+  }
+
+  .left-panel p {
+    font-size: 18px;
+  }
+
+  .right-panel {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .right-panel h3 {
+    color: #0d6efd;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .login-options {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+  }
+
+  .option-box {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: white;
+    padding: 20px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .option-box:hover {
+    background-color: #084ec7;
+  }
+</style>
+
+<body>
+  <div class="login-container">
+    <div class="left-panel">
+      <img src="janakpurdham-logo.png" alt="Janakpurdham Logo" class="logo" style="width: 150px; height: auto;" />
+      <p style="color: #fff; text-align:center; font-size:26px;">जनकपुरधाम उपमहानगरपालिका<br>धनुषा, मधेश प्रदेश</p>
+      <p style="color:#fff; text-align:center; font-size:18px;">सिफारिस तथा प्रमाणित प्रकृया व्यवस्थापन प्रणाली<br>(Recommendation and Certification Process Management System)</p>
+    </div>
+    <div class="right-panel">
+      <h3><i class="fas fa-users"></i> लग-इन छनौट गर्नुहोस्</h3>
+      <div class="login-options">
+        <a href="admin-login.html" class="option-box">एडमिन लग-इन</a>
+        <a href="citizen-login.html" class="option-box">नागरिक लग-इन</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

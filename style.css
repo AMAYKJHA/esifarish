@@ -1,0 +1,51 @@
+body {
+  font-family: 'Mangal', sans-serif;
+  background-color: #f0f8ff;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.header {
+  background-color: #66ccff;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.navbar {
+  background-color: #3399ff;
+  padding: 10px;
+  text-align: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.content {
+  padding: 30px;
+}
+
+.content section {
+  margin-bottom: 20px;
+}
+
+.footer {
+  background-color: #66ccff;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

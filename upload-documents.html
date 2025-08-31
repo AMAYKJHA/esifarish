@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ne">
+  <head>
+    <meta charset="UTF-8" />
+    <title>कागजात अपलोड</title>
+    <style>
+      body {
+        font-family: "Mangal", sans-serif;
+        background: rgb(255, 202, 219);
+        margin: 0;
+      }
+
+      header {
+        background-color: #0d6efd;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #0d6efd;
+        margin-bottom: 20px;
+      }
+
+      input[type="file"] {
+        margin: 15px 0;
+      }
+
+      button {
+        background-color: #0d6efd;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #084ec7;
+      }
+
+      #msg {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>कागजात अपलोड गर्नुहोस्</h1>
+    </header>
+    <div class="container">
+      <h2>कागजात छान्नुहोस्</h2>
+      <form
+        action="backend/upload.php"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <label>नागरिकताको प्रतिलिपि:</label><br />
+        <input type="file" name="document" id="citizenship" /><br />
+
+        <label>सिफारिस माग गरिएको कारण सम्बन्धि कागजात:</label><br />
+        <input type="file" name="document" id="reason" /><br />
+
+        <button type="submit">अपलोड गर्नुहोस्</button>
+      </form>
+
+      <p id="msg"></p>
+
+      <a href="nagrikdashboard.html">ड्यासबोर्डमा फर्कनुहोस्</a>
+    </div>
+
+    <script>
+      function validateFiles() {
+        let citizenship = document.getElementById("citizenship").files.length;
+        let reason = document.getElementById("reason").files.length;
+        let msg = document.getElementById("msg");
+
+        if (citizenship && reason) {
+          msg.style.color = "green";
+          msg.innerText = "✅ सबै आवश्यक कागजातहरू सफलतापूर्वक अपलोड गरियो।";
+        } else {
+          msg.style.color = "red";
+          let missing = [];
+          if (!citizenship) missing.push("नागरिकताको प्रतिलिपि");
+          if (!reason) missing.push("सिफारिस कारण सम्बन्धि कागजात");
+          msg.innerText =
+            "❌ कृपया तलका कागजात अपलोड गर्नुहोस्: " + missing.join(", ");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ne">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>सिफारिस आवेदन</title>
+    <link
+      href="https://nepalidatepicker.sajanmaharjan.com.np/v5/nepali.datepicker/css/nepali.datepicker.v5.0.5.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        font-size: 16px;
+      }
+      .field-group {
+        margin-bottom: 20px;
+      }
+      .field-pair {
+        display: flex;
+        gap: 10px;
+      }
+      .field-pair input {
+        flex: 1;
+      }
+      .hidden {
+        display: none;
+      }
+      #preview img,
+      #preview embed {
+        width: 100px;
+        margin-right: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>सिफारिस आवेदन फारम</h2>
+    <form
+      id="applyForm"
+      enctype="multipart/form-data"
+      method="POST"
+      action="backend/submit.php"
+    >
+      <div class="field-group">
+        <label for="sifarishType">सिफारिस प्रकार *</label>
+        <select id="sifarishType" name="sifarishType" required>
+          <option value="">-- छनौट गर्नुहोस् --</option>
+          <!-- Personal Documents -->
+          <option value="birth">जन्म प्रमाणपत्र</option>
+          <option value="death">मृत्यु प्रमाणपत्र</option>
+          <option value="citizenship">नागरिकता प्रमाणपत्र</option>
+          <option value="marriage">विवाह प्रमाणपत्र</option>
+          <option value="poverty">गरिब / आर्थिक स्थिति प्रमाणपत्र</option>
+        </select>
+      </div>
+
+      <!-- Dynamic Fields -->
+      <div id="dynamicFields"></div>
+
+      <!-- पुरा नाम -->
+      <div class="field-group">
+        <label for="fullNameNp">पुरा नाम (नेपाली) *</label>
+        <input type="text" name="fullNameNp" id="fullNameNp" required />
+      </div>
+
+      <div class="field-group">
+        <label for="fullNameEn">Full Name (English) *</label>
+        <input type="text" name="fullNameEn" id="fullNameEn" required />
+      </div>
+
+      <!-- जन्म मिति -->
+      <div class="field-group">
+        <label>जन्म मिति *</label>
+        <div class="field-pair">
+          <input
+            type="text"
+            id="dob_bs"
+            name="dob_bs"
+            placeholder="वि.सं. YYYY-MM-DD"
+            required
+          />
+          <input type="date" id="dob_ad" name="dob_ad" />
+        </div>
+      </div>
+
+      <!-- नागरिकता नम्बर र जारी मिति -->
+      <div class="field-group">
+        <label for="citizenNo">बुवाको नागरिकता नम्बर *</label>
+        <input type="text" name="citizenNo" id="citizenNo" required />
+      </div>
+      <div class="field-group">
+        <label>बुवाको नागरिकता जारी मिति *</label>
+        <div class="field-pair">
+          <input
+            type="text"
+            id="cit_bs"
+            name="cit_bs"
+            placeholder="वि.सं. YYYY-MM-DD"
+            required
+          />
+          <input type="date" id="cit_ad" name="cit_ad" />
+        </div>
+      </div>
+
+      <!-- उमेर समूह -->
+      <div class="field-group">
+        <label for="ageGroup">उमेर समूह *</label>
+        <select id="ageGroup" name="ageGroup" required>
+          <option value="">-- छनौट गर्नुहोस् --</option>
+          <option value="1-15">1-15</option>
+          <option value="16-25">16-25</option>
+          <option value="26-40">26-40</option>
+          <option value="41-60">41-60</option>
+          <option value="60+">60+</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="district">जिल्ला <span style="color: red">*</span></label>
+        <select id="district" name="district_id" required>
+          <option value="">-- छान्नुहोस् --</option>
+          <option value="101">बाजुरा / BAJURA</option>
+          <option value="102">बझाङ / BAJHANG</option>
+          <option value="103">दार्चुला / DARCHULA</option>
+          <option value="104">डोटी / DOTI</option>
+          <option value="105">कैलाली / KAILALI</option>
+          <option value="106">कञ्चनपुर / KANCHANPUR</option>
+          <option value="201">काठमाण्डौ / KATHMANDU</option>
+          <option value="202">ललितपुर / LALITPUR</option>
+          <option value="203">भक्तपुर / BHAKTAPUR</option>
+          <option value="204">धादिङ / DHADING</option>
+          <option value="205">नुवाकोट / NUWAKOT</option>
+          <option value="206">रसुवा / RASUWA</option>
+          <option value="207">मकवानपुर / MAKWANPUR</option>
+          <option value="208">चितवन / CHITAWAN</option>
+          <option value="209">रोल्पा / ROLPA</option>
+          <option value="210">लमजुङ / LAMJUNG</option>
+          <option value="211">गोरखा / GORKHA</option>
+          <option value="212">तनहुँ / TANAHU</option>
+          <option value="213">स्याङ्जा / SYANGJA</option>
+          <option value="214">कपिलवस्तु / KAPILVASTU</option>
+          <option value="215">रुपन्देही / RUPANDEHI</option>
+          <option value="216">पाल्पा / PALPA</option>
+          <option value="217">दाङ / DANG</option>
+          <option value="218">बर्दिया / BARDIYA</option>
+          <option value="219">कञ्चनपुर / KANCHANPUR</option>
+          <option value="220">इलाम / ILAM</option>
+          <option value="221">झापा / JHAPA</option>
+          <option value="222">मोरङ / MORANG</option>
+          <option value="223">सुनसरी / SUNSARI</option>
+          <option value="224">धनकुटा / DHANKUTA</option>
+          <option value="225">संखुवासभा / SANKHUWASABHA</option>
+          <option value="226">तेह्रथुम / TEHRATHUM</option>
+          <option value="227">पाँचथर / PANCHTHAR</option>
+          <option value="228">मकालु-बारुङ / MAKALU-BARUN</option>
+          <option value="229">उदयपुर / UDAYAPUR</option>
+          <option value="230">सप्तरी / SAPTARI</option>
+          <option value="231">सिराहा / SIRAHA</option>
+          <option value="232">धनुषा / DHANUSHA</option>
+          <option value="233">सर्लाही / SARLAHI</option>
+          <option value="234">रौतहट / RAUTAHAT</option>
+          <option value="235">महोत्तरी / MAHOTTARI</option>
+          <option value="236">बल्खु / BALKHU</option>
+          <option value="237">सिन्धुली / SINDHULI</option>
+          <option value="238">सिन्धुपाल्चोक / SINDHUPALCHOK</option>
+          <option value="239">काभ्रेपलाञ्चोक / KAVREPALANCHOK</option>
+          <option value="240">डोलखा / DOLAKHA</option>
+          <option value="241">रामेछाप / RAMECHHAP</option>
+          <option value="242">ओखलढुङ्गा / OKHALDHUNGA</option>
+          <option value="243">खोटाङ / KHOTANG</option>
+          <option value="244">सोलुखुम्बु / SOLUKHUMBU</option>
+          <option value="245">मुगु / MUGU</option>
+          <option value="246">हुम्ला / HUMLA</option>
+          <option value="247">जाजरकोट / JAJARKOT</option>
+          <option value="248">दैलेख / DAILEKH</option>
+          <option value="249">कालिकोट / KALIKOT</option>
+          <option value="250">जुम्ला / JUMLA</option>
+          <option value="251">डोल्पा / DOLPA</option>
+          <option value="252">मुगु / MUGU</option>
+          <option value="253">रुकुम पश्चिम / RUKUM WEST</option>
+          <option value="254">रुकुम पूर्व / RUKUM EAST</option>
+          <option value="255">सुर्खेत / SURKHET</option>
+          <option value="256">बाँके / BANKE</option>
+          <option value="257">बर्दिया / BARDIYA</option>
+          <option value="258">दोलखा / DOLAKHA</option>
+          <option value="259">धनुषा / DHANUSHA</option>
+          <option value="260">बागलुङ / BAGLUNG</option>
+          <option value="261">मनाङ / MANANG</option>
+          <option value="262">मुस्ताङ / MUSTANG</option>
+          <option value="263">म्याग्दी / MYAGDI</option>
+          <option value="264">गुल्मी / GULMI</option>
+          <option value="265">प्यूठान / PYUTHAN</option>
+          <option value="266">रोल्पा / ROLPA</option>
+          <option value="267">पाँचथर / PANCHTHAR</option>
+          <option value="268">सुनसरी / SUNSARI</option>
+          <option value="269">इलाम / ILAM</option>
+          <option value="270">धनकुटा / DHANKUTA</option>
+          <option value="271">उदयपुर / UDAYAPUR</option>
+          <option value="272">मोरङ / MORANG</option>
+          <option value="273">झापा / JHAPA</option>
+          <option value="274">सिन्धुली / SINDHULI</option>
+          <option value="275">सिन्धुपाल्चोक / SINDHUPALCHOK</option>
+          <option value="276">काभ्रेपलाञ्चोक / KAVREPALANCHOK</option>
+          <option value="277">धादिङ / DHADING</option>
+        </select>
+        <div class="error" id="errDistrict"></div>
+      </div>
+
+      <!-- <div class="row">
+      <label for="municipality">नगरपालिका <span style="color:red">*</span></label>
+      <select id="municipality" name="municipality_id" required>
+        <option value="">-- जिल्ला छान्नुहोस् पहिला --</option>
+      </select>
+      <div class="error" id="errMunicipality"></div>
+    </div>-->
+      <div class="row">
+        <label for="mobileNo"
+          >सम्पर्क नम्बर <span style="color: red">*</span></label
+        >
+        <input type="number" id="mobileNo" name="mobile_no" required />
+        <div class="error" id="errMobileNo"></div>
+      </div>
+
+      <div class="row">
+        <label for="citFront"
+          >नागरिकता (अगाडी) <small>(jpg, png, jpeg only, max 2MB)</small></label
+        >
+        <input
+          type="file"
+          id="citFront"
+          name="citizenship_front"
+          accept=".jpg,.jpeg,.png"
+          required
+        />
+        <div class="error" id="errCitFront"></div>
+      </div>
+
+      <div class="row">
+        <label for="citBack"
+          >नागरिकता (पछाडी) <small>(jpg, png, jpeg only, max 2MB)</small></label
+        >
+        <input
+          type="file"
+          id="citBack"
+          name="citizenship_back"
+          accept=".jpg,.jpeg,.png"
+          required
+        />
+        <div class="error" id="errCitBack"></div>
+      </div>
+
+      <!-- Document Upload -->
+      <div class="field-group">
+        <label for="docUpload">आवश्यक कागजातहरू अपलोड गर्नुहोस् *</label>
+        <input
+          type="file"
+          id="docUpload"
+          name="documents[]"
+          multiple
+          required
+          accept="image/*,.pdf"
+        />
+        <div id="preview"></div>
+      </div>
+
+      <button type="submit">पेश गर्नुहोस्</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://nepalidatepicker.sajanmaharjan.com.np/v5/nepali.datepicker/js/nepali.datepicker.v5.0.5.min.js"></script>
+    <script src="https://unpkg.com/nepali-date-converter/dist/nepali-date-converter.umd.js"></script>
+  </body>
+</html>
