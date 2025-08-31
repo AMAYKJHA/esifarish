@@ -32,7 +32,7 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
 <body>
     <h2>📋 eSifaris Dashboard</h2>
     <nav>
-      <a href="../admin-dashboard.php">🏠 Dashboard</a> |
+      <a href="../admin-dashboard.html">🏠 Dashboard</a> |
       <a href="applications.php">📄 Applications</a> |
       <a href="logout.php">🚪 Logout</a>
     </nav>
@@ -45,14 +45,14 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
             <th>Action</th>
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
-        <tr>
+        <tr id="row-<?php echo $row['id']; ?>">
             <td><?php echo htmlspecialchars($row['full_name_np']); ?></td>
             <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
             <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
-            <td><?php echo htmlspecialchars($row['status']); ?></td>
+            <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
             <td>
-                <button class="btn approve">Approve</button>
-                <button class="btn reject">Reject</button>
+                <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
+                <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
                 <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
             </td>
         </tr>
@@ -91,6 +91,42 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
         }
         function closeModal() {
             document.getElementById("viewModal").style.display = "none";
+        }
+        function updateStatus(id, status) {
+            var approveBtn = document.querySelector('#row-' + id + ' .approve');
+            var rejectBtn = document.querySelector('#row-' + id + ' .reject');
+            approveBtn.disabled = true;
+            rejectBtn.disabled = true;
+            approveBtn.textContent = 'Processing...';
+            rejectBtn.textContent = 'Processing...';
+            fetch('update_application_status.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'id=' + id + '&status=' + status
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('status-' + id).textContent = status;
+                    if (status === 'Approved') {
+                        approveBtn.textContent = 'Approved';
+                        approveBtn.style.backgroundColor = '#4CAF50';
+                        rejectBtn.textContent = 'Reject';
+                        rejectBtn.disabled = false;
+                    } else {
+                        rejectBtn.textContent = 'Rejected';
+                        rejectBtn.style.backgroundColor = '#f44336';
+                        approveBtn.textContent = 'Approve';
+                        approveBtn.disabled = false;
+                    }
+                } else {
+                    alert('Failed to update status');
+                    approveBtn.textContent = 'Approve';
+                    rejectBtn.textContent = 'Reject';
+                    approveBtn.disabled = false;
+                    rejectBtn.disabled = false;
+                }
+            });
         }
         window.onclick = function(event) {
             const modal = document.getElementById("viewModal");
