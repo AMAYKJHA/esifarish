@@ -51,13 +51,14 @@
       <script>
         const status = localStorage.getItem("formStatus");
         const id = localStorage.getItem("formId");
-
         if (status === "success") {
-          document.body.innerHTML = `<h2 style="color:green;">✅ आवेदन सफलतापूर्वक पेश गरियो!</h2>
-    <p>तपाईंको आवेदन आईडी: <strong>${id}</strong></p>`;
+          document.getElementById(
+            "message"
+          ).innerHTML = `✅ आवेदन सफलतापूर्वक पेश गरियो!<br><span style='font-size:16px;'>तपाईंको आवेदन आईडी: <strong>${id}</strong></span>`;
         } else {
-          document.body.innerHTML = `<h2 style="color:red;">❌ आवेदन पेश गर्न असफल भयो!</h2>
-    <p>कृपया सबै आवश्यक जानकारी भरि पुन: प्रयास गर्नुहोस्।</p>`;
+          document.getElementById(
+            "message"
+          ).innerHTML = `❌ आवेदन पेश गर्न असफल भयो!<br><span style='font-size:16px;'>कृपया सबै आवश्यक जानकारी भरि पुन: प्रयास गर्नुहोस्।</span>`;
         }
       </script>
       <script>
@@ -69,9 +70,8 @@
           }
         };
       </script>
-
-      <p id="msg"></p>
       <a href="nagrikdashboard.php">ड्यासबोर्डमा फर्कनुहोस्</a>
+      <p id="msg"></p>
     </div>
   </body>
 </html>
