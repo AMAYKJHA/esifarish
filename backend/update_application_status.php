@@ -23,4 +23,22 @@ if ($stmt->execute()) {
     echo json_encode(['error' => 'Update failed']);
 }
 $stmt->close();
+
+    if ($status === 'Rejected') {
+        $stmt = $conn->prepare('UPDATE applications SET status=? WHERE id=?');
+        $stmt->bind_param('si', $status, $id);
+        if ($stmt->execute()) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['error' => 'Update failed']);
+        }
+        $stmt->close();
+    } elseif ($status === 'Approved') {
+        $applicationId = $id;
+        ob_start();
+        include_once 'generate_certificate.php';
+        ob_end_clean();
+        echo json_encode(['success' => true]);
+        exit();
+    }
 ?>
