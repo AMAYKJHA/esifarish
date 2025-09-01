@@ -10,19 +10,64 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f4f6fb;
+      font-family: 'Segoe UI', 'Mangal', sans-serif;
+      background: #ffd6e0;
       margin: 0;
       padding: 0;
     }
-    .topbar {
+    .header {
       background: #0d6efd;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 38px 32px 38px 32px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      min-height: 110px;
+      padding: 0 48px;
+      box-shadow: 0 4px 18px rgba(13,110,253,0.13);
+      margin-bottom: 0;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+    }
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .header-actions a {
+      background: #fff;
+      color: #0d6efd;
+      padding: 8px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 1px 6px rgba(13,110,253,0.10);
+      transition: background 0.16s, color 0.16s, box-shadow 0.16s, transform 0.16s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .header-actions a:focus {
+      box-shadow: 0 0 0 2px #cce3ff;
+    }
+    .header-actions a.logout {
+      background: #fff;
+      color: #c91f45;
+      border: none;
+      font-weight: 600;
+    }
+    .header-actions a:hover {
+      background: #eaf3ff;
+      color: #084ec7;
+      box-shadow: 0 3px 12px rgba(13,110,253,0.15);
+      transform: translateY(-1px) scale(1.03);
+    }
+    .header-actions a.logout:hover {
+      background: #ffe3ec;
+      color: #a51835;
     }
     .topbar .logo {
       display: flex;
@@ -143,15 +188,16 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="logo">
-      <img src="./janakpurdham-logo.png" alt="Janakpurdham Logo" />
-      <span style="font-size:1.5rem;font-weight:bold;">Admin Dashboard</span>
+  <div class="header">
+    <div style="display: flex; align-items: center; gap: 22px;">
+      <img src="./janakpurdham-logo.png" alt="Janakpurdham Logo" style="height: 62px; border-radius: 10px; box-shadow: 0 2px 10px rgba(13,110,253,0.10);" />
+      <span style="font-size: 2.3rem; font-weight: bold; letter-spacing: 1px;">🛡️ Admin Dashboard</span>
     </div>
-    <div class="admin-info">Welcome, <?php echo htmlspecialchars($admin_name); ?></div>
-    <div class="actions">
-      <a href="backend/create_admin.php">➕ Create Admin</a>
-      <a href="backend/logout.php" class="logout">🚪 Logout</a>
+    <div class="admin-info" style="font-size: 1.15rem; font-weight: 500; margin-right: 22px;">Welcome, <?php echo htmlspecialchars($admin_name); ?></div>
+    <div class="header-actions">
+      <a href="backend/applications.php"><i class="fas fa-file-alt"></i> <span>Applications</span></a>
+      <a href="backend/create_admin.php"><i class="fas fa-user-plus"></i> <span>New Admin</span></a>
+      <a href="backend/logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
     </div>
   </div>
   <div class="dashboard-container">

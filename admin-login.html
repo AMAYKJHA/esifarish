@@ -3,28 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <title>लग-इन | सिफारिस प्रणाली</title>
-    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <style>
+      body {
+        background: #ffdfe6;
+        font-family: "Segoe UI", "Mangal", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        background: #0d6efd;
+        color: #fff;
+        text-align: center;
+        padding: 32px 0 18px 0;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border-bottom-left-radius: 32px;
+        border-bottom-right-radius: 32px;
+      }
+      .header img {
+        width: 90px;
+        margin-bottom: 10px;
+      }
+      .header h1 {
+        font-size: 2rem;
+        margin-bottom: 0;
+      }
       .login-box {
-        width: 300px;
-        margin: 80px auto;
-        padding: 25px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 340px;
+        margin: 60px auto;
+        padding: 32px 28px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(13, 110, 253, 0.08);
+      }
+      .login-box label {
+        font-weight: 500;
+        color: #0d6efd;
+        margin-bottom: 6px;
+        display: block;
       }
       .login-box input {
         width: 100%;
-        padding: 10px;
-        margin: 10px 0;
+        padding: 12px;
+        margin: 10px 0 18px 0;
+        border-radius: 8px;
+        border: 1px solid #cce3ff;
+        font-size: 16px;
+        box-sizing: border-box;
       }
       .login-box button {
-        background-color: #3399ff;
+        background-color: #0d6efd;
         color: white;
-        padding: 10px;
+        padding: 12px;
         border: none;
         width: 100%;
+        border-radius: 8px;
+        font-size: 17px;
+        font-weight: bold;
         cursor: pointer;
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.08);
+        transition: background 0.2s;
+      }
+      .login-box button:hover {
+        background-color: #084ec7;
       }
     </style>
   </head>

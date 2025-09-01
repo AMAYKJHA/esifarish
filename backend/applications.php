@@ -13,59 +13,180 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
 <!DOCTYPE html>
 <html lang="ne">
 <head>
-    <meta charset="UTF-8">
-    <title>Citizen Applications</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
-        th { background-color: #f0f0f0; }
-        .btn { padding: 5px 10px; margin-right: 5px; cursor: pointer; border: none; border-radius: 4px; }
-        .approve { background-color: #4CAF50; color: white; }
-        .reject { background-color: #f44336; color: white; }
-        .view { background-color: #2196F3; color: white; }
-        .modal { display: none; position: fixed; z-index: 1000; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); }
-        .modal-content { background-color: white; margin: auto; padding: 20px; border-radius: 6px; width: 60%; }
-        .close { color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer; }
-    </style>
-</head>
+        <meta charset="UTF-8">
+        <title>Citizen Applications</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <style>
+            body {
+                background: #ffd6e0;
+                font-family: 'Segoe UI', 'Mangal', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            .header {
+                background: #0d6efd;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 24px 32px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+                border-bottom-left-radius: 32px;
+                border-bottom-right-radius: 32px;
+                margin-bottom: 0;
+            }
+            .header-actions {
+                display: flex;
+                gap: 14px;
+            }
+            .header-actions a {
+                background: #0d6efd;
+                color: #fff;
+                padding: 10px 24px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 16px;
+                box-shadow: 0 2px 8px rgba(13,110,253,0.10);
+                transition: background 0.2s, transform 0.2s;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .header-actions a.logout {
+                background: #c91f45;
+            }
+            .header-actions a:hover {
+                background: #084ec7;
+                transform: translateY(-2px) scale(1.04);
+            }
+            .header-actions a.logout:hover {
+                background: #a51835;
+            }
+            .container {
+                max-width: 1100px;
+                margin: 40px auto;
+                background: #fff;
+                border-radius: 16px;
+                box-shadow: 0 4px 16px rgba(13,110,253,0.08);
+                padding: 32px 24px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-bottom: 24px;
+                background: #f8fbff;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(13,110,253,0.05);
+            }
+            th, td {
+                padding: 12px 10px;
+                border: 1px solid #cce3ff;
+                text-align: left;
+            }
+            th {
+                background-color: #eaf3ff;
+                color: #0d6efd;
+                font-size: 17px;
+            }
+            .btn {
+                padding: 8px 18px;
+                margin-right: 5px;
+                cursor: pointer;
+                border: none;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 500;
+                box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+                transition: background 0.2s;
+            }
+            .approve {
+                background-color: #4CAF50;
+                color: white;
+            }
+            .reject {
+                background-color: #f44336;
+                color: white;
+            }
+            .view {
+                background-color: #0d6efd;
+                color: white;
+            }
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.6);
+            }
+            .modal-content {
+                background-color: #fff;
+                margin: auto;
+                padding: 32px 24px;
+                border-radius: 12px;
+                width: 60%;
+                box-shadow: 0 4px 16px rgba(13,110,253,0.12);
+            }
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .modal-content h3 {
+                color: #0d6efd;
+            }
+        </style>
 <body>
-    <h2>📋 eSifaris Dashboard</h2>
-    <nav>
-      <a href="../admin-dashboard.html">🏠 Dashboard</a> |
-      <a href="applications.php">📄 Applications</a> |
-      <a href="logout.php">🚪 Logout</a>
-    </nav>
-    <table>
-        <tr>
-            <th>नाम</th>
-            <th>सिफारिस प्रकार</th>
-            <th>मिति</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        <?php while ($row = $result->fetch_assoc()): ?>
-        <tr id="row-<?php echo $row['id']; ?>">
-            <td><?php echo htmlspecialchars($row['full_name_np']); ?></td>
-            <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
-            <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
-            <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
-            <td>
-                <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
-                <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
-                <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-    <div id="viewModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>आवेदक विवरण</h3>
-            <div id="modalDetails">
-              <p>Loading...</p>
+            <div class="header">
+                <div style="display: flex; align-items: center; gap: 18px;">
+                    <img src="../janakpurdham-logo.png" alt="Janakpurdham Logo" style="height: 54px; border-radius: 8px; box-shadow: 0 2px 8px rgba(13,110,253,0.08);" />
+                    <span style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">🗂️ Applications</span>
+                </div>
+                <div class="header-actions">
+                    <a href="../admin-dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+                    <a href="applications.php"><i class="fas fa-file-alt"></i> Applications</a>
+                    <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
             </div>
-        </div>
+    <div class="container">
+      <table>
+          <tr>
+              <th>नाम</th>
+              <th>सिफारिस प्रकार</th>
+              <th>मिति</th>
+              <th>Status</th>
+              <th>Action</th>
+          </tr>
+          <?php while ($row = $result->fetch_assoc()): ?>
+          <tr id="row-<?php echo $row['id']; ?>">
+              <td><?php echo htmlspecialchars($row['full_name_np']); ?></td>
+              <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
+              <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
+              <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
+              <td>
+                  <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
+                  <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
+                  <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
+              </td>
+          </tr>
+          <?php endwhile; ?>
+      </table>
+      <div id="viewModal" class="modal">
+          <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h3>आवेदक विवरण</h3>
+              <div id="modalDetails">
+            <p>Loading...</p>
+              </div>
+          </div>
+      </div>
     </div>
     <script>
         function openModal(id) {

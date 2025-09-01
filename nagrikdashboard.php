@@ -12,7 +12,7 @@ $user_name = $_SESSION['user_name'] ?? '';
   <style>
     body {
       font-family: 'Segoe UI', 'Mangal', sans-serif;
-      background: linear-gradient(135deg, #f4f6fb 0%, #ffe3ec 100%);
+      background: #ffd6e0;
       margin: 0;
       padding: 0;
     }
