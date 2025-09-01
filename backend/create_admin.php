@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="phone" id="phone" required />
             <button type="submit">Create Admin</button>
         </form>
+        <a href="admin-dashboard.php" style="display:block; text-align:center; margin-top:16px; color:#0d6efd; text-decoration:none;">Back to Dashboard</a>
     </div>
 </body>
 </html>

@@ -4,9 +4,9 @@ $is_admin = isset($_SESSION['admin_id']);
 session_unset();
 session_destroy();
 if ($is_admin) {
-    header('Location: ../admin-login.html');
+    header('Location: ../home.html');
 } else {
-    header('Location: ../citizen-login.html');
+    header('Location: ../home.html');
 }
 exit();
 ?>
