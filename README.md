@@ -1,4 +1,4 @@
-![Janakpurdham Logo](janakpurdham-logo.png)
+<img src="janakpurdham-logo.png" alt="Janakpurdham Logo" width="120" />
 
 # eSifaris Project
 
