@@ -15,7 +15,17 @@ $stmt->close();
 if (!$app) { die('Application not found.'); }
 
 // Load template
-$template = file_get_contents('../sifarish_template.html');
+// Choose template based on sifarish_type
+$type = strtolower($app['sifarish_type']);
+$template_map = [
+	'birth' => 'birth.html',
+	'citizenship' => 'citizenship.html',
+	'death' => 'death.html',
+	'marriage' => 'marriage.html',
+	'poverty' => 'poverty.html'
+];
+$template_file = $template_map[$type] ?? 'birth.html';
+$template = file_get_contents(__DIR__ . '/templates/' . $template_file);
 // Replace placeholders with application data
 $template = str_replace('{{name_np}}', htmlspecialchars($app['full_name_np']), $template);
 $template = str_replace('{{name_en}}', htmlspecialchars($app['full_name_en']), $template);

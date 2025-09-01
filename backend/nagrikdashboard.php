@@ -183,7 +183,7 @@ $user_name = $_SESSION['user_name'] ?? '';
   </div>
   <script>
     function logout() {
-      window.location.href = "backend/logout.php";
+      window.location.href = "./logout.php";
     }
     function goTo(page) {
       window.location.href = page;

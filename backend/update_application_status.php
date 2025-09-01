@@ -14,6 +14,10 @@ if (!in_array($status, ['Approved', 'Rejected'])) {
 $stmt = $conn->prepare('UPDATE applications SET status=? WHERE id=?');
 $stmt->bind_param('si', $status, $id);
 if ($stmt->execute()) {
+    if ($status === 'Approved') {
+        // Generate certificate for this application
+        include_once 'generate_certificate.php';
+    }
     echo json_encode(['success' => true]);
 } else {
     echo json_encode(['error' => 'Update failed']);
