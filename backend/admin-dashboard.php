@@ -190,7 +190,7 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
 <body>
   <div class="header">
     <div style="display: flex; align-items: center; gap: 22px;">
-      <img src="../janakpurdham-logo.png" alt="Janakpurdham Logo" style="height: 62px; border-radius: 10px; box-shadow: 0 2px 10px rgba(13,110,253,0.10);" />
+      <img src="..git /janakpurdham-logo.png" alt="Janakpurdham Logo" style="height: 62px; border-radius: 10px; box-shadow: 0 2px 10px rgba(13,110,253,0.10);" />
       <span style="font-size: 2.3rem; font-weight: bold; letter-spacing: 1px;">🛡️ Admin Dashboard</span>
     </div>
     <div class="admin-info" style="font-size: 1.15rem; font-weight: 500; margin-right: 22px;">Welcome, <?php echo htmlspecialchars($admin_name); ?></div>
