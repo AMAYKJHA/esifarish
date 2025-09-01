@@ -10,11 +10,11 @@ if (!isset($_SESSION['admin_id'])) {
 
 $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
     $name = $_POST['name'] ?? '';
+    $password = $_POST['password'] ?? '';
     $email = $_POST['email'] ?? '';
     $phone = $_POST['phone'] ?? '';
+    $username = $name; // Use name as username
 
     if ($username && $password && $name && $email && $phone) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -54,12 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="msg"><?php echo htmlspecialchars($message); ?></div>
         <?php endif; ?>
         <form method="POST">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" required />
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required />
             <label for="name">Name</label>
             <input type="text" name="name" id="name" required />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required />
             <label for="phone">Phone</label>
