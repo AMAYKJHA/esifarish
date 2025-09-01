@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Create Admin</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f6fb; }
+        body { font-family: Arial, sans-serif; background: #ffd6e0; }
         .container { max-width: 400px; margin: 60px auto; background: #fff; padding: 32px; border-radius: 10px; box-shadow: 0 4px 16px rgba(13,110,253,0.08); }
         h2 { text-align: center; color: #0d6efd; }
         label { display: block; margin-top: 16px; font-weight: bold; }
