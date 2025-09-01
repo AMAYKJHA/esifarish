@@ -1,3 +1,5 @@
+![Janakpurdham Logo](janakpurdham-logo.png)
+
 # eSifaris Project
 
 A citizen recommendation and document management system for local government offices, built with PHP, HTML, CSS, and MySQL.
