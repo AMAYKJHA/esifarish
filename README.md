@@ -1,4 +1,6 @@
-# eSifaris Project <img src="janakpurdham-logo.png" alt="Janakpurdham Logo" width="150" />
+<img src="janakpurdham-logo.png" alt="Janakpurdham Logo" width="150" />
+
+# eSifaris Project
 
 A citizen recommendation and document management system for local government offices, built with PHP, HTML, CSS, and MySQL.
 
