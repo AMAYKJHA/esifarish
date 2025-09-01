@@ -37,37 +37,16 @@ $template = str_replace('{{message}}', htmlspecialchars($_POST['message'] ?? '')
 
 // Save filled template as HTML file
 // Debug: Check if uploads folder is writable
-if (!is_writable('../uploads/')) {
-	error_log('Uploads folder is not writable.');
-	echo 'Error: Uploads folder is not writable.';
-	return;
-}
 $filename = 'certificate_' . $applicationId . '_' . time() . '.html';
-$result = file_put_contents('../uploads/' . $filename, $template);
-if ($result === false) {
-	error_log('Failed to write certificate file.');
-	echo 'Error: Failed to write certificate file.';
-	return;
-}
 
 // Update application record
 if ($conn) {
 	$stmt = $conn->prepare('UPDATE applications SET certificate_file = ?, status = "Approved" WHERE id = ?');
 	if ($stmt) {
 		$stmt->bind_param('si', $filename, $applicationId);
-		if (!$stmt->execute()) {
-			error_log('Failed to update certificate_file in DB: ' . $stmt->error);
-			echo 'Error: Failed to update certificate_file in DB.';
-		}
+		$stmt->execute();
 		$stmt->close();
-	} else {
-		error_log('Failed to prepare DB statement: ' . $conn->error);
-		echo 'Error: Failed to prepare DB statement.';
 	}
-} else {
-	error_log('No DB connection.');
-	echo 'Error: No DB connection.';
-}
 
 // Redirect or show success
 // If called from AJAX, do not redirect

@@ -218,8 +218,6 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
             var rejectBtn = document.querySelector('#row-' + id + ' .reject');
             approveBtn.disabled = true;
             rejectBtn.disabled = true;
-            approveBtn.textContent = 'Processing...';
-            rejectBtn.textContent = 'Processing...';
             fetch('update_application_status.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -228,18 +226,7 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    document.getElementById('status-' + id).textContent = status;
-                    if (status === 'Approved') {
-                        approveBtn.textContent = 'Approved';
-                        approveBtn.style.backgroundColor = '#4CAF50';
-                        rejectBtn.textContent = 'Reject';
-                        rejectBtn.disabled = false;
-                    } else {
-                        rejectBtn.textContent = 'Rejected';
-                        rejectBtn.style.backgroundColor = '#f44336';
-                        approveBtn.textContent = 'Approve';
-                        approveBtn.disabled = false;
-                    }
+                    location.reload();
                 } else {
                     alert('Failed to update status');
                     approveBtn.textContent = 'Approve';
