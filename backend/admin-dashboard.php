@@ -7,7 +7,7 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard | eSifaris</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
   <style>
     body {
       font-family: 'Segoe UI', 'Mangal', sans-serif;
@@ -195,12 +195,16 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
     </div>
     <div class="admin-info" style="font-size: 1.15rem; font-weight: 500; margin-right: 22px;">Welcome, <?php echo htmlspecialchars($admin_name); ?></div>
     <div class="header-actions">
-      <a href="backend/applications.php"><i class="fas fa-file-alt"></i> <span>Applications</span></a>
-      <a href="backend/create_admin.php"><i class="fas fa-user-plus"></i> <span>New Admin</span></a>
-      <a href="backend/logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+  <a href="applications.php"><i class="fas fa-file-alt"></i> <span>Applications</span></a>
+  <a href="admin-complaints.php"><i class="fas fa-exclamation-circle"></i> <span>Complaints</span></a>
+  <a href="create_admin.php"><i class="fas fa-user-plus"></i> <span>New Admin</span></a>
+  <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
     </div>
   </div>
-  <div class="dashboard-container">
+  <div class="dashboard-container">    
+    <div class="welcome">
+      You can view, approve, or reject sifaris applications.
+    </div>
     <div class="dashboard-cards">
       <div class="card">
         <h2 id="totalApps">0</h2>
@@ -219,17 +223,10 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
         <p>Rejected</p>
       </div>
     </div>
-    <div class="dashboard-links">
-      <a href="backend/applications.php">📄 Applications</a>
-      <!-- Add more links here if needed -->
-    </div>
-    <div class="welcome">
-      You can view, approve, or reject sifaris applications.
-    </div>
   </div>
   <script>
     // Fetch stats from backend (AJAX)
-    fetch('backend/applications_stats.php')
+  fetch('applications_stats.php')
       .then(res => res.json())
       .then(stats => {
         document.getElementById('totalApps').textContent = stats.total;

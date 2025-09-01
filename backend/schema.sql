@@ -57,6 +57,7 @@ CREATE TABLE applications (
   citizenship_back VARCHAR(255),
   status VARCHAR(20) DEFAULT 'Pending',
   submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  certificate_file VARCHAR(255),
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

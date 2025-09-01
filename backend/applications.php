@@ -150,7 +150,7 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
                     <span style="font-size: 2rem; font-weight: bold; letter-spacing: 1px;">🗂️ Applications</span>
                 </div>
                 <div class="header-actions">
-                    <a href="../admin-dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
+                    <a href="admin-dashboard.php"><i class="fas fa-home"></i> Dashboard</a>
                     <a href="applications.php"><i class="fas fa-file-alt"></i> Applications</a>
                     <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>

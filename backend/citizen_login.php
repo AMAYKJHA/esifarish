@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_SESSION['user_id'] = $user['id'];
 		$_SESSION['user_name'] = $user['name'];
 		// Redirect to nagrikdashboard.php after successful login
-		header('Location: ../nagrikdashboard.php');
+		header('Location: nagrikdashboard.php');
 		exit();
 	} else {
 		echo 'Invalid credentials.';

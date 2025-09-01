@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <title>सिफारिस पत्र</title>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+      background: white;
+      margin: 0;
+      padding: 0;
+    }
+    .letter {
+      width: 21cm;
+      margin: 0 auto;
+      padding: 1.5cm;
+      background: white;
+      color: black;
+      font-size: 14pt;
+    }
+    .print-btn {
+      text-align: center;
+      margin: 15px;
+    }
+    @media print {
+      .print-btn { display: none; }
+    }
+
+    /* Header Layout */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-left, .header-right {
+      width: 20%;
+      text-align: center;
+      font-size: 12pt;
+    }
+    .header-center {
+      width: 55%;
+      text-align: center;
+      font-size: 14pt;
+      line-height: 1.5;
+    }
+    .header img {
+      width: 90px;
+      height: auto;
+    }
+    .bold-line {
+      border-top: 3px solid black;
+      margin: 8px 0;
+    }
+
+    /* Date & Subject */
+    .date-line {
+      text-align: right;
+      font-size: 13pt;
+      margin-top: 5px;
+    }
+    .subject-line {
+      text-align: center;
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Signature Right Side */
+    .footer-right {
+      margin-top: 60px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="print-btn">
+    <button onclick="window.print()">Print सिफारिस</button>
+  </div>
+
+  <div class="letter">
+    <!-- Header -->
+    <div class="header">
+      <!-- Left -->
+      <div class="header-left">
+        <img src="nepal-logo.png" alt="Nepal Logo"><br>
+        पत्र संख्या: <br>
+        चलानी नं:
+      </div>
+
+      <!-- Center -->
+      <div class="header-center">
+        <strong>जनकपुरधाम उपमहानगरपालिका</strong><br>
+        <strong>नगर कार्यपालिकाको कार्यालय</strong><br>
+        धनुषा, जनकपुरधाम<br>
+        मधेश प्रदेश, नेपाल
+      </div>
+
+      <!-- Right -->
+      <div class="header-right">
+        <img src="janakpurdham-logo.png" alt="Janakpurdham Logo"><br>
+        फोन नं: ०४१-५२०१२३
+      </div>
+    </div>
+
+    <!-- Bold Line -->
+    <div class="bold-line"></div>
+
+    <!-- Date first -->
+    <div class="date-line">मिति: </div>
+
+    <!-- Subject after one line break -->
+    <div class="subject-line">विषय: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+    <!-- Letter Body -->
+    <p style="margin-top:30px;">
+      <br><br><br><br><br><br><br><br><br>
+    </p>
+
+    <p>धन्यवाद।</p>
+
+    <!-- Footer right side -->
+    <div class="footer-right">
+      .................................................<br>
+      वडा अध्यक्ष<br>
+      वडा नं. ४, जनकपुरधाम
+    </div>
+  </div>
+</body>
+</html>

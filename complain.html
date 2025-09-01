@@ -94,7 +94,7 @@
         />
 
         <label for="complainType">गुनासोको प्रकार:</label>
-        <select id="complainType" required>
+        <select id="complainType" name="complainType" required>
           <option value="">--छान्नुहोस्--</option>
           <option value="delay">५ दिनमा सिफारिस नपाएको</option>
           <option value="no-update">अपडेट जानकारी नआएको</option>
@@ -108,22 +108,33 @@
       </form>
 
       <p class="success" id="successMsg">
-        ✅ तपाईँको गुनासो सफलतापूर्वक दर्ता भयो।
+        <span style="font-size: 2.2rem">🎉</span><br />
+        <span style="font-size: 1.2rem; color: #0d6efd; font-weight: bold"
+          >तपाईँको गुनासो सफलतापूर्वक दर्ता भयो!</span
+        ><br />
+        <span style="color: #444; font-size: 1rem"
+          >हामी चाँडै समाधानको प्रयास गर्नेछौं।</span
+        >
+        <br /><br />
+        <a
+          href="backend/nagrikdashboard.php"
+          style="
+            display: inline-block;
+            background: #0d6efd;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(13, 110, 253, 0.1);
+          "
+          >ड्यासबोर्डमा फर्कनुहोस्</a
+        >
       </p>
-
-      <p id="msg"></p>
-
-      <a href="nagrikdashboard.html">ड्यासबोर्डमा फर्कनुहोस्</a>
     </div>
 
     <script>
-      document
-        .getElementById("complainForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          document.getElementById("successMsg").style.display = "block";
-          this.reset();
-        });
+      // Success message can be shown after backend response if needed
     </script>
   </body>
 </html>

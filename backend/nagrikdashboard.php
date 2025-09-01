@@ -134,50 +134,50 @@ $user_name = $_SESSION['user_name'] ?? '';
   </div>
   <div class="dashboard">
     <div class="dashboard-cards">
-      <div class="card" onclick="goTo('apply.html')">
+      <div class="card" onclick="goTo('../apply.html')">
         <i class="fas fa-file-signature"></i>
         <h3>नयाँ सिफारिस</h3>
         <p>नयाँ सिफारिस अनुरोध गर्नुहोस्</p>
       </div>
-      <div class="card" onclick="goTo('histroy.html')">
+  <div class="card" onclick="goTo('history.php')">
         <i class="fas fa-history"></i>
         <h3>अनुरोध इतिहास</h3>
         <p>अघिल्ला सिफारिस विवरण हेर्नुहोस्</p>
-        <a href="history.html" class="dashboard-button">📜 इतिहास हेर्नुहोस्</a>
+  <a href="history.php" class="dashboard-button">📜 इतिहास हेर्नुहोस्</a>
       </div>
-      <div class="card" onclick="goTo('documents.html')">
+      <div class="card" onclick="goTo('../documents.html')">
         <i class="fas fa-download"></i>
         <h3>डाउनलोड</h3>
         <p>एडमिनले अपलोड गरेका सिफारिस पत्र डाउनलोड गर्नुहोस्</p>
-        <a href="docs/nata.pdf" download class="dashboard-button">⬇️ नाता प्रमाणपत्र</a>
-        <a href="docs/basobas.pdf" download class="dashboard-button">⬇️ बसोबास प्रमाणपत्र</a>
-        <a href="docs/junid.pdf" download class="dashboard-button">⬇️ जन्म/मृत्यु प्रमाणपत्र</a>
+  <a href="../uploads/nata.pdf" download class="dashboard-button">⬇️ नाता प्रमाणपत्र</a>
+  <a href="../uploads/basobas.pdf" download class="dashboard-button">⬇️ बसोबास प्रमाणपत्र</a>
+  <a href="../uploads/junid.pdf" download class="dashboard-button">⬇️ जन्म/मृत्यु प्रमाणपत्र</a>
       </div>
-      <div class="card" onclick="goTo('contact.html')">
+      <div class="card" onclick="goTo('../contact.html')">
         <i class="fas fa-phone-alt"></i>
         <h3>सम्पर्क गर्नुहोस्</h3>
         <p>वार्ड कार्यालयसँग सम्पर्क गर्नुहोस्</p>
       </div>
-      <div class="card" onclick="goTo('upload-documents.html')">
+      <div class="card" onclick="goTo('../upload-documents.html')">
         <i class="fas fa-upload"></i>
         <h3>कागजात अपलोड</h3>
         <p>आवश्यक कागजातहरू अपलोड गर्नुहोस्</p>
       </div>
-      <div class="card" onclick="goTo('status.html')">
+      <div class="card" onclick="goTo('../status.html')">
         <i class="fas fa-tasks"></i>
         <h3>स्थिति</h3>
         <p>आवेदनको स्थिति ट्र्याक गर्नुहोस्</p>
       </div>
-      <div class="card" onclick="goTo('success.html')">
+      <div class="card" onclick="goTo('../success.html')">
         <i class="fas fa-check-circle"></i>
         <h3>सफलता</h3>
         <p>आवेदन सफल भएमा पृष्ठ हेर्नुहोस्</p>
       </div>
-      <div class="card" onclick="goTo('complain.html')">
+      <div class="card" onclick="goTo('../complain.html')">
         <i class="fas fa-exclamation-circle"></i>
         <h3>गुनासो/Complain</h3>
         <p>५ दिनभित्र सिफारिस नपाए वा कुनै जानकारी नआए गुनासो दर्ता गर्नुहोस्</p>
-        <a href="complain.html" class="dashboard-button">✍️ गुनासो दर्ता गर्नुहोस्</a>
+  <a href="../complain.html" class="dashboard-button">✍️ गुनासो दर्ता गर्नुहोस्</a>
       </div>
     </div>
   </div>
