@@ -165,17 +165,28 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
               <th>Action</th>
           </tr>
           <?php while ($row = $result->fetch_assoc()): ?>
-          <tr id="row-<?php echo $row['id']; ?>">
-              <td><?php echo htmlspecialchars($row['full_name_np']); ?></td>
-              <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
-              <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
-              <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
-              <td>
-                  <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
-                  <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
-                  <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
-              </td>
-          </tr>
+                    <tr id="row-<?php echo $row['id']; ?>">
+                            <td><?php echo htmlspecialchars($row['full_name_np']); ?></td>
+                            <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
+                            <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
+                            <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
+                            <td style="vertical-align: top;">
+                                <div style="display: flex; flex-direction: column; gap: 8px; min-width: 220px;">
+                                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                                        <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
+                                        <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
+                                        <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
+                                    </div>
+                                    <form enctype="multipart/form-data" onsubmit="uploadDocument(event, <?php echo $row['id']; ?>)" style="display: flex; gap: 6px; align-items: center; margin-top: 4px;">
+                                        <input type="file" name="document" required style="width: 140px;" />
+                                        <button type="submit" class="btn" style="background:#0d6efd;color:#fff;">Upload</button>
+                                    </form>
+                                    <?php if (!empty($row['certificate_file'])): ?>
+                                        <a href="../uploads/<?php echo htmlspecialchars($row['certificate_file']); ?>" target="_blank" style="margin-top:4px; color:#0d6efd;">Download</a>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                    </tr>
           <?php endwhile; ?>
       </table>
       <div id="viewModal" class="modal">
@@ -189,6 +200,25 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
       </div>
     </div>
     <script>
+    function uploadDocument(e, appId) {
+        e.preventDefault();
+        var form = e.target;
+        var formData = new FormData(form);
+        formData.append('application_id', appId);
+        fetch('upload_document.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('File uploaded!');
+                location.reload();
+            } else {
+                alert('Upload failed: ' + (data.error || 'Unknown error'));
+            }
+        });
+    }
         function openModal(id) {
             document.getElementById("viewModal").style.display = "block";
             document.getElementById("modalDetails").innerHTML = "<p>Loading...</p>";

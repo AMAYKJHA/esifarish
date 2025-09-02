@@ -37,7 +37,10 @@ $template = str_replace('{{message}}', htmlspecialchars($_POST['message'] ?? '')
 
 // Save filled template as HTML file
 // Debug: Check if uploads folder is writable
+
 $filename = 'certificate_' . $applicationId . '_' . time() . '.html';
+$filepath = '../uploads/' . $filename;
+file_put_contents($filepath, $template);
 
 // Update application record
 if ($conn) {
