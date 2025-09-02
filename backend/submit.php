@@ -58,10 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $docStmt->close();
         }
         $stmt->close();
-        header('Location: ../success.html');
-        exit();
+    $_SESSION['formStatus'] = 'success';
+    $_SESSION['formId'] = $application_id;
+    header('Location: ../success.html');
+    exit();
     } else {
-        echo 'Error submitting application.';
+    $_SESSION['formStatus'] = 'fail';
+    unset($_SESSION['formId']);
+    header('Location: ../success.html');
+    exit();
     }
 }
 ?>
