@@ -30,22 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = 'Please fill all fields.';
     }
 }
-// Create a default admin user
-$name = 'admin';
-$username = 'admin';
-$password = 'admin';
-$email = 'admin@gmail.com';
-$phone = '12345678';
-$hash = password_hash($password, PASSWORD_DEFAULT);
 
-$stmt = $conn->prepare('INSERT INTO admins (name, username, password, email, phone) VALUES (?, ?, ?, ?, ?)');
-$stmt->bind_param('sssss', $name, $username, $hash, $email, $phone);
-if ($stmt->execute()) {
-    echo 'Admin created successfully.';
-} else {
-    echo 'Error: ' . $stmt->error;
-}
-$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
