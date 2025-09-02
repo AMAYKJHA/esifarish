@@ -181,7 +181,7 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
                         </form>
                     </div>
                     <?php if (!empty($row['certificate_file'])): ?>
-                        <a href="../uploads/<?php echo htmlspecialchars($row['certificate_file']); ?>" target="_blank" style="color:#0d6efd;">Download</a>
+                        <a href="../uploads/<?php echo htmlspecialchars($row['certificate_file']); ?>" download style="color:#0d6efd;">Download</a>
                     <?php endif; ?>
                 </td>
             </tr>
