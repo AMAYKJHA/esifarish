@@ -170,22 +170,20 @@ $result = $conn->query('SELECT * FROM applications ORDER BY submitted_at DESC');
                             <td><?php echo htmlspecialchars($row['sifarish_type']); ?></td>
                             <td><?php echo htmlspecialchars($row['submitted_at']); ?></td>
                             <td id="status-<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td style="vertical-align: top;">
-                                <div style="display: flex; flex-direction: column; gap: 8px; min-width: 220px;">
-                                    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                                        <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
-                                        <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
-                                        <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
-                                    </div>
-                                    <form enctype="multipart/form-data" onsubmit="uploadDocument(event, <?php echo $row['id']; ?>)" style="display: flex; gap: 6px; align-items: center; margin-top: 4px;">
-                                        <input type="file" name="document" required style="width: 140px;" />
-                                        <button type="submit" class="btn" style="background:#0d6efd;color:#fff;">Upload</button>
-                                    </form>
-                                    <?php if (!empty($row['certificate_file'])): ?>
-                                        <a href="../uploads/<?php echo htmlspecialchars($row['certificate_file']); ?>" target="_blank" style="margin-top:4px; color:#0d6efd;">Download</a>
-                                    <?php endif; ?>
-                                </div>
-                            </td>
+                                                            <td style="vertical-align: top; min-width: 220px;">
+                                                                <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 6px;">
+                                                                    <button class="btn approve" onclick="updateStatus(<?php echo $row['id']; ?>, 'Approved')">Approve</button>
+                                                                    <button class="btn reject" onclick="updateStatus(<?php echo $row['id']; ?>, 'Rejected')">Reject</button>
+                                                                    <button class="btn view" onclick="openModal(<?php echo $row['id']; ?>)">View</button>
+                                                                    <form enctype="multipart/form-data" onsubmit="uploadDocument(event, <?php echo $row['id']; ?>)" style="display: flex; gap: 6px; align-items: center; margin:0;">
+                                                                        <input type="file" name="document" required style="width: 140px;" />
+                                                                        <button type="submit" class="btn" style="background:#0d6efd;color:#fff;">Upload</button>
+                                                                    </form>
+                                                                </div>
+                                                                <?php if (!empty($row['certificate_file'])): ?>
+                                                                    <a href="../uploads/<?php echo htmlspecialchars($row['certificate_file']); ?>" target="_blank" style="color:#0d6efd;">Download</a>
+                                                                <?php endif; ?>
+                                                            </td>
                     </tr>
           <?php endwhile; ?>
       </table>
