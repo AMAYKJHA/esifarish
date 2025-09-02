@@ -197,7 +197,7 @@ $admin_name = $_SESSION['admin_name'] ?? 'Admin';
     <div class="header-actions">
   <a href="applications.php"><i class="fas fa-file-alt"></i> <span>Applications</span></a>
   <a href="admin-complaints.php"><i class="fas fa-exclamation-circle"></i> <span>Complaints</span></a>
-  <a href="create_admin.php"><i class="fas fa-user-plus"></i> <span>New Admin</span></a>
+  <a href="new_admin.php"><i class="fas fa-user-plus"></i> <span>New Admin</span></a>
   <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
     </div>
   </div>
